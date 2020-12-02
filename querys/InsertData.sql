@@ -3,7 +3,7 @@ GO
 -- Insert rows into table 'TableName'
 INSERT INTO dbo.Categoria
 ( -- columns to insert data into
- [idCategoría], [nombre]
+ [idCategoria], [nombre]
 )
 VALUES
 ( -- first row: values for the columns in the list above
@@ -145,7 +145,7 @@ VALUES
 )
 -- add more rows here
 GO
-SELECT * from Producto
+SELECT * from dbo.Producto
 GO
 SELECT * from dbo.Inventario
 GO
@@ -165,3 +165,5 @@ SELECT * from dbo.OrdenProveedor
 GO
 SELECT * from dbo.Cliente
 GO
+
+-- Delete rows from table 'TableName'
