@@ -4,25 +4,29 @@ import {Entity, model, property} from '@loopback/repository';
 export class Venta extends Entity {
   @property({
     type: 'number',
+    required: false,
     precision: 10,
     scale: 0,
-    mssql: {columnName: 'idVenta', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'YES'},
+    id: 1,
+    mssql: {columnName: 'id', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'YES'},
   })
-  idVenta?: number;
+  id?: number;
 
   @property({
     type: 'number',
+    required: true,
     precision: 10,
     scale: 0,
-    mssql: {columnName: 'idCliente', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'YES'},
+    mssql: {columnName: 'idCliente', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'NO'},
   })
-  idCliente?: number;
+  idCliente: number;
 
   @property({
     type: 'date',
-    mssql: {columnName: 'fecha', dataType: 'date', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+    required: true,
+    mssql: {columnName: 'fecha', dataType: 'date', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'NO'},
   })
-  fecha?: string;
+  fecha: string;
 
   // Define well-known properties here
 

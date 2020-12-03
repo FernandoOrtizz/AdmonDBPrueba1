@@ -1,1 +1,1 @@
-export * from './mercadito.datasource';
+export * from './mercadito-data-source.datasource';

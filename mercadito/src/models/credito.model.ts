@@ -4,29 +4,31 @@ import {Entity, model, property} from '@loopback/repository';
 export class Credito extends Entity {
   @property({
     type: 'number',
-    required: true,
+    required: false,
     precision: 10,
     scale: 0,
     id: 1,
-    mssql: {columnName: 'idCredito', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'NO'},
+    mssql: {columnName: 'id', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'YES'},
   })
-  idCredito: number;
+  id?: number;
 
   @property({
     type: 'number',
+    required: true,
     precision: 10,
     scale: 0,
-    mssql: {columnName: 'idCliente', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'YES'},
+    mssql: {columnName: 'idCliente', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'NO'},
   })
-  idCliente?: number;
+  idCliente: number;
 
   @property({
     type: 'number',
+    required: true,
     precision: 10,
     scale: 0,
-    mssql: {columnName: 'idVenta', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'YES'},
+    mssql: {columnName: 'idVenta', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'NO'},
   })
-  idVenta?: number;
+  idVenta: number;
 
   @property({
     type: 'string',

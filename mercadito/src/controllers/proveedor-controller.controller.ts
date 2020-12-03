@@ -19,13 +19,13 @@ import {
 import {Proveedor} from '../models';
 import {ProveedorRepository} from '../repositories';
 
-export class ProveedorController {
+export class ProveedorControllerController {
   constructor(
     @repository(ProveedorRepository)
     public proveedorRepository : ProveedorRepository,
   ) {}
 
-  @post('/proveedor', {
+  @post('/proveedors', {
     responses: {
       '200': {
         description: 'Proveedor model instance',
@@ -39,17 +39,17 @@ export class ProveedorController {
         'application/json': {
           schema: getModelSchemaRef(Proveedor, {
             title: 'NewProveedor',
-            
+            exclude: ['id'],
           }),
         },
       },
     })
-    proveedor: Proveedor,
+    proveedor: Omit<Proveedor, 'id'>,
   ): Promise<Proveedor> {
     return this.proveedorRepository.create(proveedor);
   }
 
-  @get('/proveedor/count', {
+  @get('/proveedors/count', {
     responses: {
       '200': {
         description: 'Proveedor model count',
@@ -63,7 +63,7 @@ export class ProveedorController {
     return this.proveedorRepository.count(where);
   }
 
-  @get('/proveedor', {
+  @get('/proveedors', {
     responses: {
       '200': {
         description: 'Array of Proveedor model instances',
@@ -84,7 +84,7 @@ export class ProveedorController {
     return this.proveedorRepository.find(filter);
   }
 
-  @patch('/proveedor', {
+  @patch('/proveedors', {
     responses: {
       '200': {
         description: 'Proveedor PATCH success count',
@@ -106,7 +106,7 @@ export class ProveedorController {
     return this.proveedorRepository.updateAll(proveedor, where);
   }
 
-  @get('/proveedor/{id}', {
+  @get('/proveedors/{id}', {
     responses: {
       '200': {
         description: 'Proveedor model instance',
@@ -125,7 +125,7 @@ export class ProveedorController {
     return this.proveedorRepository.findById(id, filter);
   }
 
-  @patch('/proveedor/{id}', {
+  @patch('/proveedors/{id}', {
     responses: {
       '204': {
         description: 'Proveedor PATCH success',
@@ -146,7 +146,7 @@ export class ProveedorController {
     await this.proveedorRepository.updateById(id, proveedor);
   }
 
-  @put('/proveedor/{id}', {
+  @put('/proveedors/{id}', {
     responses: {
       '204': {
         description: 'Proveedor PUT success',
@@ -160,7 +160,7 @@ export class ProveedorController {
     await this.proveedorRepository.replaceById(id, proveedor);
   }
 
-  @del('/proveedor/{id}', {
+  @del('/proveedors/{id}', {
     responses: {
       '204': {
         description: 'Proveedor DELETE success',

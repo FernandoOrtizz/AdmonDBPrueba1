@@ -2,7 +2,7 @@ import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
 
 const config = {
-  name: 'mercadito',
+  name: 'mercaditoDataSource',
   connector: 'mssql',
   url: 'mssql://Fernando:123456@DESKTOP-F1Q5C8L/MercaditoDB',
   host: 'DESKTOP-F1Q5C8L',
@@ -17,13 +17,13 @@ const config = {
 // gracefully. The `stop()` method is inherited from `juggler.DataSource`.
 // Learn more at https://loopback.io/doc/en/lb4/Life-cycle.html
 @lifeCycleObserver('datasource')
-export class MercaditoDataSource extends juggler.DataSource
+export class MercaditoDataSourceDataSource extends juggler.DataSource
   implements LifeCycleObserver {
-  static dataSourceName = 'mercadito';
+  static dataSourceName = 'mercaditoDataSource';
   static readonly defaultConfig = config;
 
   constructor(
-    @inject('datasources.config.mercadito', {optional: true})
+    @inject('datasources.config.mercaditoDataSource', {optional: true})
     dsConfig: object = config,
   ) {
     super(dsConfig);

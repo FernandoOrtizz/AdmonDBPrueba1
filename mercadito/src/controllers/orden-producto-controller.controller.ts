@@ -19,7 +19,7 @@ import {
 import {OrdenProducto} from '../models';
 import {OrdenProductoRepository} from '../repositories';
 
-export class OrdenproductoController {
+export class OrdenProductoControllerController {
   constructor(
     @repository(OrdenProductoRepository)
     public ordenProductoRepository : OrdenProductoRepository,
@@ -39,12 +39,12 @@ export class OrdenproductoController {
         'application/json': {
           schema: getModelSchemaRef(OrdenProducto, {
             title: 'NewOrdenProducto',
-            
+            exclude: ['id'],
           }),
         },
       },
     })
-    ordenProducto: OrdenProducto,
+    ordenProducto: Omit<OrdenProducto, 'id'>,
   ): Promise<OrdenProducto> {
     return this.ordenProductoRepository.create(ordenProducto);
   }

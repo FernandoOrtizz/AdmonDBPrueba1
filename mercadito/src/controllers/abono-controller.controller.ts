@@ -19,7 +19,7 @@ import {
 import {Abono} from '../models';
 import {AbonoRepository} from '../repositories';
 
-export class AbonoController {
+export class AbonoControllerController {
   constructor(
     @repository(AbonoRepository)
     public abonoRepository : AbonoRepository,
@@ -39,12 +39,12 @@ export class AbonoController {
         'application/json': {
           schema: getModelSchemaRef(Abono, {
             title: 'NewAbono',
-            
+            exclude: ['id'],
           }),
         },
       },
     })
-    abono: Abono,
+    abono: Omit<Abono, 'id'>,
   ): Promise<Abono> {
     return this.abonoRepository.create(abono);
   }

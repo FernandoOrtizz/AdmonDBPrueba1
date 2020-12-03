@@ -6,40 +6,44 @@ import {Entity, model, property} from '@loopback/repository';
 export class OrdenProveedor extends Entity {
   @property({
     type: 'number',
-    required: true,
+    required: false,
     precision: 10,
     scale: 0,
     id: 1,
-    mssql: {columnName: 'idOrden', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'NO'},
+    mssql: {columnName: 'id', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'YES'},
   })
-  idOrden: number;
+  id?: number;
 
   @property({
     type: 'number',
+    required: true,
     precision: 10,
     scale: 0,
-    mssql: {columnName: 'idProveedor', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'YES'},
+    mssql: {columnName: 'idProveedor', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'NO'},
   })
-  idProveedor?: number;
+  idProveedor: number;
 
   @property({
     type: 'date',
-    mssql: {columnName: 'fechaOrden', dataType: 'date', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+    required: true,
+    mssql: {columnName: 'fechaOrden', dataType: 'date', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'NO'},
   })
-  fechaOrden?: string;
+  fechaOrden: string;
 
   @property({
     type: 'date',
-    mssql: {columnName: 'fechaEntrega', dataType: 'date', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+    required: true,
+    mssql: {columnName: 'fechaEntrega', dataType: 'date', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'NO'},
   })
-  fechaEntrega?: string;
+  fechaEntrega: string;
 
   @property({
     type: 'string',
+    required: true,
     length: 50,
-    mssql: {columnName: 'estado', dataType: 'varchar', dataLength: 50, dataPrecision: null, dataScale: null, nullable: 'YES'},
+    mssql: {columnName: 'estado', dataType: 'varchar', dataLength: 50, dataPrecision: null, dataScale: null, nullable: 'NO'},
   })
-  estado?: string;
+  estado: string;
 
   // Define well-known properties here
 

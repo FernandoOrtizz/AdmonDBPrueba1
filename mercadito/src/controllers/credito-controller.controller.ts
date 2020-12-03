@@ -19,7 +19,7 @@ import {
 import {Credito} from '../models';
 import {CreditoRepository} from '../repositories';
 
-export class CreditoController {
+export class CreditoControllerController {
   constructor(
     @repository(CreditoRepository)
     public creditoRepository : CreditoRepository,
@@ -39,12 +39,12 @@ export class CreditoController {
         'application/json': {
           schema: getModelSchemaRef(Credito, {
             title: 'NewCredito',
-            
+            exclude: ['id'],
           }),
         },
       },
     })
-    credito: Credito,
+    credito: Omit<Credito, 'id'>,
   ): Promise<Credito> {
     return this.creditoRepository.create(credito);
   }

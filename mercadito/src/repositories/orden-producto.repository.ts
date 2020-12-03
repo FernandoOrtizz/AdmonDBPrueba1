@@ -1,15 +1,15 @@
 import {DefaultCrudRepository} from '@loopback/repository';
 import {OrdenProducto, OrdenProductoRelations} from '../models';
-import {MercaditoDataSource} from '../datasources';
+import {MercaditoDataSourceDataSource} from '../datasources';
 import {inject} from '@loopback/core';
 
 export class OrdenProductoRepository extends DefaultCrudRepository<
   OrdenProducto,
-  typeof OrdenProducto.prototype.idOrden,
+  typeof OrdenProducto.prototype.id,
   OrdenProductoRelations
 > {
   constructor(
-    @inject('datasources.mercadito') dataSource: MercaditoDataSource,
+    @inject('datasources.mercaditoDataSource') dataSource: MercaditoDataSourceDataSource,
   ) {
     super(OrdenProducto, dataSource);
   }

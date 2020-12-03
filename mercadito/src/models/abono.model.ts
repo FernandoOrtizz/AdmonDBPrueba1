@@ -4,32 +4,37 @@ import {Entity, model, property} from '@loopback/repository';
 export class Abono extends Entity {
   @property({
     type: 'number',
+    required: false,
     precision: 10,
     scale: 0,
-    mssql: {columnName: 'idAbono', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'YES'},
+    id: 1,
+    mssql: {columnName: 'id', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'YES'},
   })
-  idAbono?: number;
+  id?: number;
 
   @property({
     type: 'date',
-    mssql: {columnName: 'fecha', dataType: 'date', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'YES'},
+    required: true,
+    mssql: {columnName: 'fecha', dataType: 'date', dataLength: null, dataPrecision: null, dataScale: null, nullable: 'NO'},
   })
-  fecha?: string;
+  fecha: string;
 
   @property({
     type: 'number',
+    required: true,
     precision: 10,
     scale: 0,
-    mssql: {columnName: 'idCredito', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'YES'},
+    mssql: {columnName: 'idCredito', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'NO'},
   })
-  idCredito?: number;
+  idCredito: number;
 
   @property({
     type: 'number',
+    required: true,
     precision: 53,
-    mssql: {columnName: 'monto', dataType: 'float', dataLength: null, dataPrecision: 53, dataScale: null, nullable: 'YES'},
+    mssql: {columnName: 'monto', dataType: 'float', dataLength: null, dataPrecision: 53, dataScale: null, nullable: 'NO'},
   })
-  monto?: number;
+  monto: number;
 
   // Define well-known properties here
 

@@ -19,7 +19,7 @@ import {
 import {Producto} from '../models';
 import {ProductoRepository} from '../repositories';
 
-export class ProductoController {
+export class ProductoControllerController {
   constructor(
     @repository(ProductoRepository)
     public productoRepository : ProductoRepository,
@@ -39,12 +39,12 @@ export class ProductoController {
         'application/json': {
           schema: getModelSchemaRef(Producto, {
             title: 'NewProducto',
-            
+            exclude: ['id'],
           }),
         },
       },
     })
-    producto: Producto,
+    producto: Omit<Producto, 'id'>,
   ): Promise<Producto> {
     return this.productoRepository.create(producto);
   }

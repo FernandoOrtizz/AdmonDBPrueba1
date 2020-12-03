@@ -19,13 +19,13 @@ import {
 import {OrdenProveedor} from '../models';
 import {OrdenProveedorRepository} from '../repositories';
 
-export class OrdenproveedorController {
+export class OrdenProveedorControllerController {
   constructor(
     @repository(OrdenProveedorRepository)
     public ordenProveedorRepository : OrdenProveedorRepository,
   ) {}
 
-  @post('/orden-proveedor', {
+  @post('/orden-proveedors', {
     responses: {
       '200': {
         description: 'OrdenProveedor model instance',
@@ -39,17 +39,17 @@ export class OrdenproveedorController {
         'application/json': {
           schema: getModelSchemaRef(OrdenProveedor, {
             title: 'NewOrdenProveedor',
-            
+            exclude: ['id'],
           }),
         },
       },
     })
-    ordenProveedor: OrdenProveedor,
+    ordenProveedor: Omit<OrdenProveedor, 'id'>,
   ): Promise<OrdenProveedor> {
     return this.ordenProveedorRepository.create(ordenProveedor);
   }
 
-  @get('/orden-proveedor/count', {
+  @get('/orden-proveedors/count', {
     responses: {
       '200': {
         description: 'OrdenProveedor model count',
@@ -63,7 +63,7 @@ export class OrdenproveedorController {
     return this.ordenProveedorRepository.count(where);
   }
 
-  @get('/orden-proveedor', {
+  @get('/orden-proveedors', {
     responses: {
       '200': {
         description: 'Array of OrdenProveedor model instances',
@@ -84,7 +84,7 @@ export class OrdenproveedorController {
     return this.ordenProveedorRepository.find(filter);
   }
 
-  @patch('/orden-proveedor', {
+  @patch('/orden-proveedors', {
     responses: {
       '200': {
         description: 'OrdenProveedor PATCH success count',
@@ -106,7 +106,7 @@ export class OrdenproveedorController {
     return this.ordenProveedorRepository.updateAll(ordenProveedor, where);
   }
 
-  @get('/orden-proveedor/{id}', {
+  @get('/orden-proveedors/{id}', {
     responses: {
       '200': {
         description: 'OrdenProveedor model instance',
@@ -125,7 +125,7 @@ export class OrdenproveedorController {
     return this.ordenProveedorRepository.findById(id, filter);
   }
 
-  @patch('/orden-proveedor/{id}', {
+  @patch('/orden-proveedors/{id}', {
     responses: {
       '204': {
         description: 'OrdenProveedor PATCH success',
@@ -146,7 +146,7 @@ export class OrdenproveedorController {
     await this.ordenProveedorRepository.updateById(id, ordenProveedor);
   }
 
-  @put('/orden-proveedor/{id}', {
+  @put('/orden-proveedors/{id}', {
     responses: {
       '204': {
         description: 'OrdenProveedor PUT success',
@@ -160,7 +160,7 @@ export class OrdenproveedorController {
     await this.ordenProveedorRepository.replaceById(id, ordenProveedor);
   }
 
-  @del('/orden-proveedor/{id}', {
+  @del('/orden-proveedors/{id}', {
     responses: {
       '204': {
         description: 'OrdenProveedor DELETE success',

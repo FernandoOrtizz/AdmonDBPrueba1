@@ -4,18 +4,21 @@ import {Entity, model, property} from '@loopback/repository';
 export class Categoria extends Entity {
   @property({
     type: 'number',
+    required: false,
     precision: 10,
     scale: 0,
-    mssql: {columnName: 'idCategoría', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'YES'},
+    id: 1,
+    mssql: {columnName: 'id', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'YES'},
   })
-  idCategorA?: number;
+  id?: number;
 
   @property({
     type: 'string',
+    required: true,
     length: 50,
-    mssql: {columnName: 'nombre', dataType: 'varchar', dataLength: 50, dataPrecision: null, dataScale: null, nullable: 'YES'},
+    mssql: {columnName: 'nombre', dataType: 'varchar', dataLength: 50, dataPrecision: null, dataScale: null, nullable: 'NO'},
   })
-  nombre?: string;
+  nombre: string;
 
   // Define well-known properties here
 

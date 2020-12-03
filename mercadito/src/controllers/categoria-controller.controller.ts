@@ -19,7 +19,7 @@ import {
 import {Categoria} from '../models';
 import {CategoriaRepository} from '../repositories';
 
-export class CategoriaController {
+export class CategoriaControllerController {
   constructor(
     @repository(CategoriaRepository)
     public categoriaRepository : CategoriaRepository,
@@ -39,12 +39,12 @@ export class CategoriaController {
         'application/json': {
           schema: getModelSchemaRef(Categoria, {
             title: 'NewCategoria',
-            
+            exclude: ['id'],
           }),
         },
       },
     })
-    categoria: Categoria,
+    categoria: Omit<Categoria, 'id'>,
   ): Promise<Categoria> {
     return this.categoriaRepository.create(categoria);
   }

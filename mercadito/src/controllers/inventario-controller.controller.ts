@@ -19,10 +19,10 @@ import {
 import {Inventario} from '../models';
 import {InventarioRepository} from '../repositories';
 
-export class InventarioController {
+export class InventarioControllerController {
   constructor(
     @repository(InventarioRepository)
-    public inventarioRepository : InventarioRepository,
+    public InventarioRepository : InventarioRepository,
   ) {}
 
   @post('/inventarios', {
@@ -39,14 +39,14 @@ export class InventarioController {
         'application/json': {
           schema: getModelSchemaRef(Inventario, {
             title: 'NewInventario',
-            
+            exclude: ['id'],
           }),
         },
       },
     })
-    inventario: Inventario,
+    inventario: Omit<Inventario, 'id'>,
   ): Promise<Inventario> {
-    return this.inventarioRepository.create(inventario);
+    return this.InventarioRepository.create(inventario);
   }
 
   @get('/inventarios/count', {
@@ -60,7 +60,7 @@ export class InventarioController {
   async count(
     @param.where(Inventario) where?: Where<Inventario>,
   ): Promise<Count> {
-    return this.inventarioRepository.count(where);
+    return this.InventarioRepository.count(where);
   }
 
   @get('/inventarios', {
@@ -81,7 +81,7 @@ export class InventarioController {
   async find(
     @param.filter(Inventario) filter?: Filter<Inventario>,
   ): Promise<Inventario[]> {
-    return this.inventarioRepository.find(filter);
+    return this.InventarioRepository.find(filter);
   }
 
   @patch('/inventarios', {
@@ -103,7 +103,7 @@ export class InventarioController {
     inventario: Inventario,
     @param.where(Inventario) where?: Where<Inventario>,
   ): Promise<Count> {
-    return this.inventarioRepository.updateAll(inventario, where);
+    return this.InventarioRepository.updateAll(inventario, where);
   }
 
   @get('/inventarios/{id}', {
@@ -122,7 +122,7 @@ export class InventarioController {
     @param.path.number('id') id: number,
     @param.filter(Inventario, {exclude: 'where'}) filter?: FilterExcludingWhere<Inventario>
   ): Promise<Inventario> {
-    return this.inventarioRepository.findById(id, filter);
+    return this.InventarioRepository.findById(id, filter);
   }
 
   @patch('/inventarios/{id}', {
@@ -143,7 +143,7 @@ export class InventarioController {
     })
     inventario: Inventario,
   ): Promise<void> {
-    await this.inventarioRepository.updateById(id, inventario);
+    await this.InventarioRepository.updateById(id, inventario);
   }
 
   @put('/inventarios/{id}', {
@@ -157,7 +157,7 @@ export class InventarioController {
     @param.path.number('id') id: number,
     @requestBody() inventario: Inventario,
   ): Promise<void> {
-    await this.inventarioRepository.replaceById(id, inventario);
+    await this.InventarioRepository.replaceById(id, inventario);
   }
 
   @del('/inventarios/{id}', {
@@ -168,6 +168,6 @@ export class InventarioController {
     },
   })
   async deleteById(@param.path.number('id') id: number): Promise<void> {
-    await this.inventarioRepository.deleteById(id);
+    await this.InventarioRepository.deleteById(id);
   }
 }

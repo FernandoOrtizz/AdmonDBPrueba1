@@ -4,11 +4,13 @@ import {Entity, model, property} from '@loopback/repository';
 export class Cliente extends Entity {
   @property({
     type: 'number',
+    required: false,
     precision: 10,
     scale: 0,
-    mssql: {columnName: 'idCliente', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'YES'},
+    id: 1,
+    mssql: {columnName: 'id', dataType: 'int', dataLength: null, dataPrecision: 10, dataScale: 0, nullable: 'YES'},
   })
-  idCliente?: number;
+  id?: number;
 
   @property({
     type: 'string',
